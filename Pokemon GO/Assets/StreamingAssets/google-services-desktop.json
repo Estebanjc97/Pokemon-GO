@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "637551393118",
+    "project_id": "pokemongo-8e02e",
+    "storage_bucket": "pokemongo-8e02e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637551393118:android:578147d695066b647fb7cf",
+        "android_client_info": {
+          "package_name": "com.danielsanchez.pokemonGO"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637551393118-39uiakdcpt78t89nnmuk7vfr0kvjpn4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ3gxv3CjMmNAqeGRnAWKaV6rmoG77BM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637551393118-39uiakdcpt78t89nnmuk7vfr0kvjpn4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637551393118:android:938d48fa99ddef4c7fb7cf",
+        "android_client_info": {
+          "package_name": "com.danielsanchez.pokemon_GO"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637551393118-39uiakdcpt78t89nnmuk7vfr0kvjpn4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ3gxv3CjMmNAqeGRnAWKaV6rmoG77BM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637551393118-39uiakdcpt78t89nnmuk7vfr0kvjpn4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
