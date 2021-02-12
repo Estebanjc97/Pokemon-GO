@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class AuthenticationManager : MonoBehaviour
 {
+
     //variables de Firebase para autenticar los usuarios
     protected Firebase.Auth.FirebaseAuth auth;
     protected Firebase.Auth.FirebaseUser user;
@@ -14,6 +15,8 @@ public class AuthenticationManager : MonoBehaviour
     public InputField inputFieldEmail, inputFieldPassword; //Entradas del usuario
 
     bool logged = false;
+    string message = "";
+    public Text UImessage; 
     private void Start()
     {
         InitializeFirebase();
@@ -21,35 +24,42 @@ public class AuthenticationManager : MonoBehaviour
 
     private void Update()
     {
-        if (logged)
+        if (logged) //si nos hemos loggueado exitosamente cargamos la escena del juego
         {
-            ActivatedSession();
+            InitializeFirebase();
             GetSessionProfile();
-            SceneManager.LoadScene(1);
+            StartCoroutine(LoadGameScene());
         }
-
+        UImessage.text = message;
     }
+    
+    IEnumerator LoadGameScene()
+    {
+        float delayLoading = 2f;
+        yield return new WaitForSeconds(delayLoading);
+        SceneManager.LoadScene(1);
+    }
+
 
     void InitializeFirebase()
     {
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance; //Iniciamos la autenticacion con el API de Firebase
         auth.StateChanged += AuthStateChanged;
-        AuthStateChanged(this, null);
+        AuthStateChanged(this, null); //empezamos desloggueados
     }
 
     void AuthStateChanged(object sender, System.EventArgs eventArgs)
     {
-        if (auth.CurrentUser != user) //verificamos si el usuario es el mismo que ingreso por ultima vez
+        if (auth.CurrentUser != user) 
         {
-            bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null; //verificamos si estamos logueados y posteriormente nos deslogueamos o nos logueamos de acuerdo al valor booleano
+            bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null; 
             if (!signedIn && user != null)
             {
-                Debug.Log("Signed out " + user.UserId);
+      
             }
             user = auth.CurrentUser;
             if (signedIn)
             {
-                Debug.Log("Signed in " + user.UserId);
                 displayName = user.DisplayName ?? "";
             }
         }
@@ -62,31 +72,22 @@ public class AuthenticationManager : MonoBehaviour
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
             if (task.IsCanceled)
             {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled."); //mostramos un mensaje de error si el usuario canceló   la operación
+                message = "Registro cancelado"; //mostramos un mensaje de error si el usuario canceló   la operación
                 return;
             }
             if (task.IsFaulted)
             {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception); //mostramos un mensaje de error si ocurrio algo inesperado con la API de Firebase
+                message = "Asegúrate de llenar todos los campos y de que el usuario no exista";
                 return;
             }
 
             // Si el usuario se creò correctamente le asignamos la variable del usuario al usuario que este ingresó por entrada
             Firebase.Auth.FirebaseUser newUser = task.Result;
-            Debug.LogFormat("Firebase user created successfully: {0} ({1})",
-                newUser.DisplayName, newUser.UserId);
+            message = "Usuario registrado exitosamente";
+
         });
     }
-    public void ActivatedSession()
-    {
-        Firebase.Auth.FirebaseAuth auth;
-        Firebase.Auth.FirebaseUser user;
-
-        // Handle initialization of the necessary firebase modules:
-        InitializeFirebase();
-    }
    
-
     public void GetSessionProfile()
     {
         Firebase.Auth.FirebaseUser user = auth.CurrentUser;
@@ -110,21 +111,21 @@ public class AuthenticationManager : MonoBehaviour
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
             if (task.IsCanceled)
             {
-                Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+                message = "Inicio de sesión cancelado";
                 return;
             }
             if (task.IsFaulted)
             {
-                Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                message = "Correo y/o contraseña incorrecta";
                 return;
             }
-
+            
             Firebase.Auth.FirebaseUser newUser = task.Result;
-            Debug.LogFormat("User signed in successfully: {0} ({1})",
-                newUser.DisplayName, newUser.UserId);
+            message = "Inicio de sesión exitoso";
             logged = true;
         });
     }
+
     void OnDestroy()
     {
         auth.StateChanged -= AuthStateChanged;
