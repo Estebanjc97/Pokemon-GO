@@ -108,19 +108,30 @@ public class TargetRecognition : MonoBehaviour, ITrackableEventHandler
             }
             else
             {
-                pokemonDescription.text = "No hay más pokemones en la zona, vuelve más tarde";
+                StartCoroutine(NoPokemonsAvailable());
             }
         }
     }
 
-
+    IEnumerator NoPokemonsAvailable()
+    {
+        pokemonDescription.text = "No hay más pokemones en la zona, vuelve más tarde";
+        Canvas.SetActive(true);
+        canCatch = false;
+        yield return new WaitForSeconds(1.8f);
+        Canvas.SetActive(false);
+    }
     protected virtual void OnTrackingLost()
     {
         if (mTrackableBehaviour)
         {
-            pokemons[pokemonRandom].SetActive(false);
+            if (pokemons.Count > 0)
+            {
+                pokemons[pokemonRandom].SetActive(false);
+            }
             canCatch = false;
             Canvas.SetActive(false);
+            
         }
     }
 
@@ -158,6 +169,8 @@ public class TargetRecognition : MonoBehaviour, ITrackableEventHandler
                 pokemonDescription.text = "¡Has atrapado este excelente pokemón!";
                 pokemons[pokemonRandom].SetActive(false);
                 pokemons.RemoveAt(pokemonRandom);
+                yield return new WaitForSeconds(1.5f);
+                Canvas.SetActive(false);
             }
             else
             {
