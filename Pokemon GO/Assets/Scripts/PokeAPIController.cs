@@ -8,27 +8,34 @@ using UnityEngine.UI;
 public class PokeAPIController : MonoBehaviour
 {
     public int pokemonID = 1;
-    public RawImage pokeRawImage;
+
+    [Header("Buttom info")]
     public Text pokeNameText, pokeNumText;
+
+    //Private strings
     string[] pokeTypeNames;
     string[] pokemonAbilities;
     string pokeName;
+    string pokemonHeightString;
+    string pokBaseXP;
+
+    [Header("Pokemon Info")]
+    public RawImage pokeRawImage;
     public Text[] pokeTypeTextArray;
     public Text[] pokemonAbilitiesTextArray;
     public Text pokeNameTextExpand;
     public Text pokemonIDExpand;
     public Text pokemonBaseXP;
-
     public Text pokemonHeightText;
-    string pokemonHeightString;
-    string pokBaseXP;
-
+   
     private readonly string basePokeURL = "https://pokeapi.co/api/v2/";
-    UnityWebRequest pokeSpriteRequest, pokeInfoRequest;
+    UnityWebRequest pokeSpriteRequest, pokeInfoRequest; //Esta variable nos permite llamar los datos JSON
+    Button myButton;
 
     private void Start()
     {
         CallGetPokemonAtIndex();
+        myButton = GetComponent<Button>();
     }
     
     public void CallGetPokemonAtIndex()
@@ -46,9 +53,11 @@ public class PokeAPIController : MonoBehaviour
 
         yield return pokeInfoRequest.SendWebRequest();
 
-        if (pokeInfoRequest.isNetworkError || pokeInfoRequest.isHttpError)
-        {
-            Debug.LogError(pokeInfoRequest.error);
+        if (pokeInfoRequest.isNetworkError || pokeInfoRequest.isHttpError)//si al momento de actualizar la lista
+        {                                                               
+            pokeNameText.text = ""; //de elementos hay algun boton con un ID de pokemon inválido eliminamos los 
+            pokeNumText.text = ""; //textos de dicho botón
+            myButton.interactable = false;   //y pór último lo inabilitamos
             yield break;
         }
 

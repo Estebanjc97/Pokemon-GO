@@ -154,6 +154,7 @@ public class PokedexController : MonoBehaviour
             {
                 _pokeAPIController.pokemonID -= (pokedexMaxValue - elementsInTable); //si hemos llegado al final de la pokedex y presionamos para ver la siguiente lista volveremos al inicio
             }
+            _pokeAPIController.GetComponent<Button>().interactable = true; //activamos los botones para que estos puedan ser presionados
             _pokeAPIController.CallGetPokemonAtIndex();
         }
     }
@@ -170,6 +171,7 @@ public class PokedexController : MonoBehaviour
             {
                 _pokeAPIController.pokemonID += (pokedexMaxValue - elementsInTable); //si hemos llegado al inicio de la pokedex y presionamos para ver la anterior lista iremos al final
             }
+            _pokeAPIController.GetComponent<Button>().interactable = true;
             _pokeAPIController.CallGetPokemonAtIndex();
         }
     }

@@ -181,9 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 4
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 971280389}
   pokeNumText: {fileID: 44111195}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}
@@ -549,16 +549,16 @@ MonoBehaviour:
   rounded: 0
   canvasToModify: {fileID: 1205825103}
   newAnchoredX_18_9: 941.9
-  newAnchoredY_18_9: 410
-  newHeight_18_9: 750
+  newAnchoredY_18_9: 360
+  newHeight_18_9: 690
   newWidth_18_9: 1750
   newAnchoredX_2960x1440: 941.9
   newAnchoredY_2960x1440: 400
   newHeight_2960x1440: 720
   newWidth_2960x1440: 1767.3
   newAnchoredX_16_9: 935
-  newAnchoredY_16_9: 480
-  newHeight_16_9: 850
+  newAnchoredY_16_9: 420
+  newHeight_16_9: 800
   newWidth_16_9: 1750
   newAnchoredX_800x480: 935
   newAnchoredY_800x480: 450
@@ -784,7 +784,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.0000038146973, y: 31.896713}
+  m_AnchoredPosition: {x: -0.0000038146973, y: 31.896729}
   m_SizeDelta: {x: 340.23163, y: 63.793427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &111834403
@@ -943,9 +943,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 6
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 931677602}
   pokeNumText: {fileID: 1398067313}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}
@@ -1393,8 +1393,8 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 92
-    m_Alignment: 0
+    m_MaxSize: 70
+    m_Alignment: 3
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -1695,9 +1695,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 2
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 1504780635}
   pokeNumText: {fileID: 841144449}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}
@@ -2413,9 +2413,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 9
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 469202039}
   pokeNumText: {fileID: 654688787}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}
@@ -2970,9 +2970,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 7
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 606927894}
   pokeNumText: {fileID: 1247981402}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}
@@ -3494,9 +3494,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 10
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 419897964}
   pokeNumText: {fileID: 671096142}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}
@@ -4955,9 +4955,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 5
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 1095789989}
   pokeNumText: {fileID: 664210314}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}
@@ -5284,9 +5284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 1
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 1425416342}
   pokeNumText: {fileID: 809831167}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}
@@ -5790,13 +5790,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1140830448}
   m_TextComponent: {fileID: 252989617}
   m_Placeholder: {fileID: 1491269334}
-  m_ContentType: 0
+  m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 6
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 4
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -6534,9 +6534,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 3
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 474601473}
   pokeNumText: {fileID: 410237883}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}
@@ -7732,7 +7732,7 @@ GameObject:
   - component: {fileID: 1771704426}
   m_Layer: 0
   m_Name: PokedexController
-  m_TagString: GameController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7751,7 +7751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pokeAPIControllers: []
   pokemonButtonsTag: Pokemon
-  pokedexMaxValue: 100
+  pokedexMaxValue: 900
   elementsInTable: 10
   errorMessageText: {fileID: 1755733500}
   pokeTypeTextArray:
@@ -8880,9 +8880,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemonID: 8
-  pokeRawImage: {fileID: 1934459353}
   pokeNameText: {fileID: 2054383933}
   pokeNumText: {fileID: 300939835}
+  pokeRawImage: {fileID: 1934459353}
   pokeTypeTextArray:
   - {fileID: 63199640}
   - {fileID: 1677839842}

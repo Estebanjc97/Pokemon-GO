@@ -27,7 +27,7 @@ public class TargetRecognition : MonoBehaviour, ITrackableEventHandler
     int pokemonRandom;
     bool canCatch = false;
     public Transform pokeballSpawn;
-
+    GameObject musicController;
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
@@ -98,17 +98,19 @@ public class TargetRecognition : MonoBehaviour, ITrackableEventHandler
     {
         if (mTrackableBehaviour)
         {
-            if(pokemons.Count>0)
+            if(pokemons.Count>0) //verificamos que aún podamos atrapar pokemones disponibles
             {
-                pokemonRandom = Random.Range(0, pokemons.Count);
+                pokemonRandom = Random.Range(0, pokemons.Count); //mostramos un pokemon de la lista aleatoriamente
                 pokemons[pokemonRandom].SetActive(true);
                 pokemonDescription.text = "Ha aparecido un: " + pokemons[pokemonRandom].gameObject.name + " salvaje";
                 Canvas.SetActive(true);
-                canCatch = true;
+                canCatch = true; //permitimos lanzar la pokeball
+                musicController = GameObject.FindGameObjectWithTag("MusicController");
+                musicController.GetComponent<MusicController>().PlayPokemonAppears();
             }
             else
             {
-                StartCoroutine(NoPokemonsAvailable());
+                StartCoroutine(NoPokemonsAvailable()); //si no hay pokemones disponibles llamamos a la corroutina
             }
         }
     }
@@ -116,6 +118,7 @@ public class TargetRecognition : MonoBehaviour, ITrackableEventHandler
     IEnumerator NoPokemonsAvailable()
     {
         pokemonDescription.text = "No hay más pokemones en la zona, vuelve más tarde";
+        musicController.GetComponent<MusicController>().PlayPokemonRun();
         Canvas.SetActive(true);
         canCatch = false;
         yield return new WaitForSeconds(1.8f);
@@ -125,23 +128,24 @@ public class TargetRecognition : MonoBehaviour, ITrackableEventHandler
     {
         if (mTrackableBehaviour)
         {
-            if (pokemons.Count > 0)
-            {
-                pokemons[pokemonRandom].SetActive(false);
+            if (pokemons.Count > 0) //si aun hay pokemones disponibles para atrapar, y se pierde el reconocimiento del marcador
+            {           
+                pokemons[pokemonRandom].SetActive(false); //desactivamos el pokemon
             }
-            canCatch = false;
-            Canvas.SetActive(false);
-            
+            canCatch = false; //no podemos usar la pokeball
+            Canvas.SetActive(false); //y desactivamos el canvas
+            musicController.GetComponent<MusicController>().PlayPokemonRun();
         }
     }
 
 
     #endregion // PROTECTED_METHODS
 
-    IEnumerator pokemonRun()
+    IEnumerator pokemonRun() //se llama cuando al lanzar la pokeball NO se atrapa al pokemon
     {
         float delay = 1.5f;
         pokemonDescription.text = "El pokemon ha huido";
+        musicController.GetComponent<MusicController>().PlayPokemonRun();
         pokemons[pokemonRandom].SetActive(false);
         canCatch = false;
         yield return new WaitForSeconds(delay);
@@ -156,21 +160,22 @@ public class TargetRecognition : MonoBehaviour, ITrackableEventHandler
     { 
         if(canCatch)
         {
-            int randomCatch = Random.Range(0, 2);
-            GameObject newPokeball= Instantiate(pokeball, pokeballSpawn.position, Quaternion.identity);
+            int randomCatch = Random.Range(0, 2); //50% de probabilidad entre atrapar o no atrapar al pokemon
+            GameObject newPokeball= Instantiate(pokeball, pokeballSpawn.position, Quaternion.identity); //lanzamos una pokeball que tiene una animacion simple que se reproduce al instanciarse
             newPokeball.transform.SetParent(pokeballSpawn);
 
             float clipLenght = newPokeball.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length; //conseguimos la duracion de la animación que tiene la pokebola
 
             yield return new WaitForSeconds(clipLenght); //esperamos hasta que haya terminado la animación
 
-            if(randomCatch==0) //y determinamos al azar si atrapamos o no al pokemon
+            if(randomCatch==0) //si atrapamos al pokemon
             {
                 pokemonDescription.text = "¡Has atrapado este excelente pokemón!";
+                musicController.GetComponent<MusicController>().PlayPokemonCaught();
                 pokemons[pokemonRandom].SetActive(false);
-                pokemons.RemoveAt(pokemonRandom);
-                yield return new WaitForSeconds(1.5f);
-                Canvas.SetActive(false);
+                pokemons.RemoveAt(pokemonRandom); //lo eliminamos de la lista
+                yield return new WaitForSeconds(1.5f); //y luego de un tiempo
+                Canvas.SetActive(false); //eliminamos el canvas
             }
             else
             {
