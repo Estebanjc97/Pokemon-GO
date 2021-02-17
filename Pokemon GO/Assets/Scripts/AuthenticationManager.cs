@@ -123,6 +123,10 @@ public class AuthenticationManager : MonoBehaviour
         });
     }
 
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(1);
+    }
     void OnDestroy()
     {
         auth.StateChanged -= AuthStateChanged;
